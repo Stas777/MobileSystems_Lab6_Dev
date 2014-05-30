@@ -12,7 +12,7 @@ void time_handler(unsigned long data)
 {
 	int ret;
 	
-	printk(KERN_INFO "Lab06 Hello, World!!!, timeout=%ld \n", timeout);
+	printk(KERN_INFO "Hello, World!!!, timeout=%ld \n", timeout);
 	ret = mod_timer(&timer, jiffies + msecs_to_jiffies(timeout));
 	if (ret) 
 	{
