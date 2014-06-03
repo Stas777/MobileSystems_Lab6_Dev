@@ -14,8 +14,7 @@ void time_handler(unsigned long data)
 	
 	printk(KERN_INFO "Lab06 Hello, World!!!, timeout=%ld \n", timeout);
 	ret = mod_timer(&timer, jiffies + msecs_to_jiffies(timeout));
-	if (ret) 
-	{
+	if (ret) {
 		printk(KERN_ERR "Fail to mod timer\n");
 	}
 }
@@ -24,8 +23,7 @@ static ssize_t write_handler(struct file *filp, const char *buff, size_t count, 
 {
 	long t = -1l;
 	kstrtol(buff, 10, &t);
-	if (t == -1l) 
-	{
+	if (t == -1l) {
 		printk(KERN_INFO "Wrong argument.\n");
 		return count;
 	}
@@ -48,16 +46,14 @@ static int __init lab_init(void)
 {
 	int ret;
 	ret = misc_register(&lab06_dev);
-	if (ret)
-	{
+	if (ret) {
 		printk(KERN_ERR "Unable to register \"Lab06\" device\n");
 	}
 	
 	setup_timer(&timer, time_handler, 0);
 
 	ret = mod_timer(&timer, jiffies + msecs_to_jiffies(timeout));
-	if (ret) 
-	{
+	if (ret) {
 		printk(KERN_ERR "Error in mod_timer\n");
 	}
 
